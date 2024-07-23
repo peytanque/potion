@@ -1,6 +1,6 @@
-import { RecipeType } from "./type";
+import { PotionType } from "./type";
 
-export const recipesData: RecipeType[] = [
+export const potionsData: PotionType[] = [
   {
     slug: "potion-invisibilite",
     name: "Potion d'invisibillité",

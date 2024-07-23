@@ -1,9 +1,10 @@
 import { Avatar, Badge, Box, Skeleton } from "@mui/material";
 import {
+  endpoints,
   IngredientApiResponse,
   IngredientType,
-  RecipeApiResponse,
-  RecipeType,
+  PotionApiResponse,
+  PotionType,
 } from "@types";
 import { FC, useEffect, useState } from "react";
 
@@ -20,13 +21,13 @@ type WithQuantityBadgeProps = {
 
 const Thumb: FC<ThumbProps> = ({ name, type, quantity }) => {
   const [data, setData] = useState<
-    IngredientApiResponse | RecipeApiResponse | null
+    IngredientApiResponse | PotionApiResponse | null
   >(null);
 
   useEffect(() => {
     switch (type) {
       case "ingredient":
-        fetch("/api/ingredients/" + name)
+        fetch(endpoints.ingredients +  name)
           .then((res) => res.json())
           .then((data) => {
             setData(data);
@@ -34,7 +35,7 @@ const Thumb: FC<ThumbProps> = ({ name, type, quantity }) => {
         break;
 
       case "potion":
-        fetch("/api/recipes/" + name)
+        fetch(endpoints.potions + name)
           .then((res) => res.json())
           .then((data) => {
             setData(data);
@@ -77,7 +78,7 @@ const WithQuantityBadge: FC<WithQuantityBadgeProps> = ({
   );
 };
 
-const ItemAvatar: FC<IngredientType | RecipeType> = ({ asset, name }) => {
+const ItemAvatar: FC<IngredientType | PotionType> = ({ asset, name }) => {
   return <Avatar alt={name} src={asset.src} />;
 };
 

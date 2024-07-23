@@ -6,21 +6,23 @@ import {
 } from "./ingredient";
 
 import {
-  RecipeApiResponse,
-  RecipeType,
-  RecipesApiResponse,
-  recipesData,
-} from "./recipe";
+  PotionApiResponse,
+  PotionType,
+  PotionsApiResponse,
+  potionsData,
+} from "./potion";
 
 import { routes, Route } from "./routes";
 
-export { ingredientsData, recipesData, routes };
+import { endpoints } from "./endpoints";
+
+export { ingredientsData, potionsData, routes, endpoints };
 export type {
   IngredientApiResponse,
   IngredientType,
   IngredientsApiResponse,
-  RecipeApiResponse,
-  RecipeType,
-  RecipesApiResponse,
-  Route
+  PotionApiResponse,
+  PotionType,
+  PotionsApiResponse,
+  Route,
 };

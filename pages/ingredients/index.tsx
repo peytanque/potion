@@ -1,7 +1,7 @@
 import Container from "@mui/material/Container";
 import { NextPage } from "next";
 import { FC, useEffect, useState } from "react";
-import { IngredientsApiResponse } from "@types";
+import { endpoints, IngredientsApiResponse } from "@types";
 import { IngredientCard, SkeletonIngredientCard } from "@components";
 import { Grid } from "@mui/material";
 
@@ -11,7 +11,7 @@ export const Ingredients: NextPage = () => {
   const skeletonData = [...Array(10)];
 
   useEffect(() => {
-    fetch("/api/ingredients")
+    fetch(endpoints.ingredients)
       .then((res) => res.json())
       .then((data) => {
         setData(data);

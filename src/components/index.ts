@@ -1,13 +1,13 @@
 import Link from "./Link";
 import { IngredientCard, SkeletonIngredientCard } from "./IngredientCard";
-import RecipeCard from "./RecipeCard";
+import PotionCard from "./PotionCard";
 import PageLayout from "./PageLayout";
 import Thumb from "./Thumb";
 
 export {
   Link,
   IngredientCard,
-  RecipeCard,
+  PotionCard,
   PageLayout,
   Thumb,
   SkeletonIngredientCard,

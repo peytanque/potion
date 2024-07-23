@@ -6,17 +6,17 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { RecipeType } from "@types";
+import { PotionType } from "@types";
 import { IngredientCard } from "./IngredientCard";
 import Thumb from "./Thumb";
 
-export const RecipeCard = ({
+export const PotionCard = ({
   asset,
   description,
   name,
   slug,
   ingredients,
-}: RecipeType) => {
+}: PotionType) => {
   return (
     <Card
       sx={{
@@ -60,4 +60,4 @@ export const RecipeCard = ({
   );
 };
 
-export default RecipeCard;
+export default PotionCard;

@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { IngredientType } from "@types";
 import { FC } from "react";
-import { recipesData } from "@types"
+import { potionsData } from "@types"
 import Thumb from "./Thumb";
 
 const imageStyle = {
@@ -53,7 +53,7 @@ export const IngredientCard = ({
   name,
   slug,
 }: IngredientType) => {
-  const craftablePotions = recipesData.filter(recipe => recipe.ingredients.some(ingredient => ingredient.name === slug));
+  const craftablePotions = potionsData.filter(potion => potion.ingredients.some(ingredient => ingredient.name === slug));
 
   return (
     <Card

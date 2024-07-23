@@ -17,6 +17,6 @@ export type Route = {
 export const routes: Route[] = [
   { path: "/", label: "Acceuil", icon: Home },
   { path: "/ingredients", label: "Ingrédients", icon: Cookie },
-  { path: "/recipes", label: "Recettes", icon: Blender },
+  { path: "/potions", label: "Recettes", icon: Blender },
   { path: "/inventory", label: "Inventaire", icon: Inventory2 },
 ];

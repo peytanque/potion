@@ -1,13 +1,13 @@
-import { RecipeApiResponse, recipesData } from "@types";
+import { PotionApiResponse, potionsData } from "@types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<RecipeApiResponse | undefined>
+  res: NextApiResponse<PotionApiResponse | undefined>
 ) {
   const { slug } = req.query;
-  const val = recipesData.find(
-    (recipe) => recipe.slug === slug
+  const val = potionsData.find(
+    (potion) => potion.slug === slug
   );
   val
     ? res.status(200).json({ data: val })

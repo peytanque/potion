@@ -1,6 +1,6 @@
 import { IngredientSlug } from "./../ingredient/type";
 
-type RecipeSlug =
+type PotionSlug =
   | "potion-invisibilite"
   | "potion-amour"
   | "potion-jeunesse"
@@ -17,8 +17,8 @@ type IngredientQuantityType = {
   userQuantity?: number;
 };
 
-export type RecipeType = {
-  slug: RecipeSlug;
+export type PotionType = {
+  slug: PotionSlug;
   name: string;
   description: string;
   asset: {
@@ -27,11 +27,11 @@ export type RecipeType = {
   ingredients: IngredientQuantityType[];
 };
 
-export type RecipesApiResponse = {
-  data: RecipeType[];
+export type PotionsApiResponse = {
+  data: PotionType[];
 };
 
-export type RecipeApiResponse = {
-  data: RecipeType | undefined;
+export type PotionApiResponse = {
+  data: PotionType | undefined;
   error?: string;
 };
