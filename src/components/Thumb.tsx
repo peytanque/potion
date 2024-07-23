@@ -20,15 +20,14 @@ type WithQuantityBadgeProps = {
 };
 
 const Thumb: FC<ThumbProps> = ({ slug, type, quantity }) => {
-  const { data: potionData, isLoading: potionIsLoading } = usePotion(
+  const { data: potionData } = usePotion(
     slug as PotionSlug,
     type === "potion"
   );
-  const { data: ingredientData, isLoading: ingredientIsLoading } =
+  const { data: ingredientData } =
     useIngredient(slug as IngredientSlug, type === "ingredient");
 
   const data = potionData || ingredientData;
-  const isLoading = potionIsLoading || ingredientIsLoading;
 
   if (quantity && data?.data) {
     return (

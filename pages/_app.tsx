@@ -4,7 +4,6 @@ import { AppCacheProvider } from "@mui/material-nextjs/v14-pagesRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "../src/theme";
-import { Box } from "@mui/material";
 import { PageLayout } from "@components";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 

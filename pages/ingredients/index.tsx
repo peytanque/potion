@@ -1,7 +1,5 @@
 import Container from "@mui/material/Container";
 import { NextPage } from "next";
-import { FC, useEffect, useState } from "react";
-import { endpoints, IngredientsApiResponse } from "@types";
 import { IngredientCard, SkeletonIngredientCard } from "@components";
 import { Grid } from "@mui/material";
 import { useIngredients } from "@hooks";

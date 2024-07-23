@@ -7,7 +7,6 @@ import {
   Typography,
 } from "@mui/material";
 import { PotionType } from "@types";
-import { IngredientCard } from "./IngredientCard";
 import Thumb from "./Thumb";
 
 export const PotionCard = ({

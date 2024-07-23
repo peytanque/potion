@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { IngredientType } from "@types";
 import { FC } from "react";
-import { potionsData } from "@types";
 import Thumb from "./Thumb";
 import { useInRecipe } from "@hooks";
 

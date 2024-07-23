@@ -1,7 +1,5 @@
 import Container from "@mui/material/Container";
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
-import { endpoints, PotionsApiResponse } from "@types";
 import { PotionCard } from "@components";
 import { Grid } from "@mui/material";
 import { usePotions } from "@hooks";

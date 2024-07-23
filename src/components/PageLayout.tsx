@@ -5,9 +5,8 @@ import {
   Container,
   Paper,
 } from "@mui/material";
-import { Blender, Cookie, Home, Inventory2 } from "@mui/icons-material";
 import { FC, useEffect, useState } from "react";
-import { routes, Route } from '@types'
+import { routes } from '@types'
 import { usePathname, useRouter } from "next/navigation";
 
 type PageLayoutProps = {

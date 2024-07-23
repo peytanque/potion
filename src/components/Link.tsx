@@ -76,7 +76,6 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     noLinkStyle,
     prefetch,
     replace,
-    role, // Link don't have roles.
     scroll,
     shallow,
     ...other
