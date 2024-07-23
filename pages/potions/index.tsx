@@ -4,20 +4,10 @@ import { useEffect, useState } from "react";
 import { endpoints, PotionsApiResponse } from "@types";
 import { PotionCard } from "@components";
 import { Grid } from "@mui/material";
+import { usePotions } from "@hooks";
 
 export const Potions: NextPage = () => {
-  const [data, setData] = useState<PotionsApiResponse | null>(null);
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch(endpoints.potions)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      });
-  }, []);
-
+  const { data, isLoading } = usePotions();
   if (isLoading) return <p>Loading...</p>;
 
   return (

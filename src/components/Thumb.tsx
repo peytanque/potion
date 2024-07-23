@@ -1,16 +1,16 @@
-import { Avatar, Badge, Box, Skeleton } from "@mui/material";
+import { useIngredient, usePotion } from "@hooks";
+import { Avatar, Badge, Skeleton } from "@mui/material";
 import {
-  endpoints,
-  IngredientApiResponse,
+  IngredientSlug,
   IngredientType,
-  PotionApiResponse,
+  PotionSlug,
   PotionType,
 } from "@types";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 
 type ThumbProps = {
   type: "ingredient" | "potion";
-  name: string;
+  slug: PotionSlug | IngredientSlug;
   quantity?: number;
 };
 
@@ -19,33 +19,16 @@ type WithQuantityBadgeProps = {
   quantity: number;
 };
 
-const Thumb: FC<ThumbProps> = ({ name, type, quantity }) => {
-  const [data, setData] = useState<
-    IngredientApiResponse | PotionApiResponse | null
-  >(null);
+const Thumb: FC<ThumbProps> = ({ slug, type, quantity }) => {
+  const { data: potionData, isLoading: potionIsLoading } = usePotion(
+    slug as PotionSlug,
+    type === "potion"
+  );
+  const { data: ingredientData, isLoading: ingredientIsLoading } =
+    useIngredient(slug as IngredientSlug, type === "ingredient");
 
-  useEffect(() => {
-    switch (type) {
-      case "ingredient":
-        fetch(endpoints.ingredients +  name)
-          .then((res) => res.json())
-          .then((data) => {
-            setData(data);
-          });
-        break;
-
-      case "potion":
-        fetch(endpoints.potions + name)
-          .then((res) => res.json())
-          .then((data) => {
-            setData(data);
-          });
-        break;
-
-      default:
-        break;
-    }
-  }, [name, type]);
+  const data = potionData || ingredientData;
+  const isLoading = potionIsLoading || ingredientIsLoading;
 
   if (quantity && data?.data) {
     return (

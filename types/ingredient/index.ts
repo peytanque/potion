@@ -3,7 +3,8 @@ import {
   IngredientApiResponse,
   IngredientsApiResponse,
   IngredientType,
+  IngredientSlug
 } from "./type";
 
 export { ingredientsData };
-export type { IngredientApiResponse, IngredientType, IngredientsApiResponse };
+export type { IngredientApiResponse, IngredientType, IngredientsApiResponse, IngredientSlug };

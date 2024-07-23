@@ -3,6 +3,7 @@ import {
   IngredientType,
   IngredientsApiResponse,
   ingredientsData,
+  IngredientSlug
 } from "./ingredient";
 
 import {
@@ -10,6 +11,7 @@ import {
   PotionType,
   PotionsApiResponse,
   potionsData,
+  PotionSlug
 } from "./potion";
 
 import { routes, Route } from "./routes";
@@ -25,4 +27,6 @@ export type {
   PotionType,
   PotionsApiResponse,
   Route,
+  PotionSlug,
+  IngredientSlug
 };

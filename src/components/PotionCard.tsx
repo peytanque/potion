@@ -50,7 +50,7 @@ export const PotionCard = ({
             <Thumb
               key={`${name}-${ingredient.name}`}
               type="ingredient"
-              name={ingredient.name}
+              slug={ingredient.name}
               quantity={ingredient.quantity}
             />
           ))}

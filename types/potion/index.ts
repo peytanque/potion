@@ -1,5 +1,5 @@
 import { potionsData } from "./data";
-import { PotionApiResponse, PotionType, PotionsApiResponse } from "./type";
+import { PotionApiResponse, PotionType, PotionsApiResponse, PotionSlug } from "./type";
 
 export { potionsData };
-export type { PotionApiResponse, PotionType, PotionsApiResponse };
+export type { PotionApiResponse, PotionType, PotionsApiResponse, PotionSlug };

@@ -9,8 +9,9 @@ import {
 } from "@mui/material";
 import { IngredientType } from "@types";
 import { FC } from "react";
-import { potionsData } from "@types"
+import { potionsData } from "@types";
 import Thumb from "./Thumb";
+import { useInRecipe } from "@hooks";
 
 const imageStyle = {
   height: "100%",
@@ -48,19 +49,15 @@ export const SkeletonIngredientCard: FC = () => {
   );
 };
 
-export const IngredientCard = ({
-  asset,
-  name,
-  slug,
-}: IngredientType) => {
-  const craftablePotions = potionsData.filter(potion => potion.ingredients.some(ingredient => ingredient.name === slug));
+export const IngredientCard = ({ asset, name, slug }: IngredientType) => {
+  const { data, isLoading } = useInRecipe(slug);
 
   return (
     <Card
       sx={{
         display: "flex",
         padding: 0.5,
-        height: '100%'
+        height: "100%",
       }}
       variant="outlined"
     >
@@ -75,16 +72,20 @@ export const IngredientCard = ({
           {name}
         </Typography>
         <Divider sx={{ my: 1 }} />
-        <div>est présent dans :</div>
-        <Grid container gap={{ xs: 4, md: 2 }}>
-          {craftablePotions.map((potion) => (
-            <Thumb
-              key={`${name}-${potion.name}`}
-              type="potion"
-              name={potion.slug}
-            />
-          ))}
-        </Grid>
+        {!isLoading && (
+          <>
+            <div>est présent dans :</div>
+            <Grid container gap={{ xs: 4, md: 2 }}>
+              {data?.map((potion) => (
+                <Thumb
+                  key={`${name}-${potion.name}`}
+                  type="potion"
+                  slug={potion.slug}
+                />
+              ))}
+            </Grid>
+          </>
+        )}
       </CardContent>
     </Card>
   );

@@ -2,7 +2,6 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Box,
-  colors,
   Container,
   Paper,
 } from "@mui/material";

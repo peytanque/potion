@@ -1,6 +1,6 @@
 import { IngredientSlug } from "./../ingredient/type";
 
-type PotionSlug =
+export type PotionSlug =
   | "potion-invisibilite"
   | "potion-amour"
   | "potion-jeunesse"

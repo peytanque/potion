@@ -4,20 +4,11 @@ import { FC, useEffect, useState } from "react";
 import { endpoints, IngredientsApiResponse } from "@types";
 import { IngredientCard, SkeletonIngredientCard } from "@components";
 import { Grid } from "@mui/material";
+import { useIngredients } from "@hooks";
 
 export const Ingredients: NextPage = () => {
-  const [data, setData] = useState<IngredientsApiResponse | null>(null);
-  const [isLoading, setLoading] = useState(true);
+  const { data, isLoading } = useIngredients()
   const skeletonData = [...Array(10)];
-
-  useEffect(() => {
-    fetch(endpoints.ingredients)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      });
-  }, []);
 
   return (
     <Container>
