@@ -9,9 +9,9 @@ export const Ingredients: NextPage = () => {
 
   return (
     <Container>
-      <Grid container spacing={1} sx={{ justifyContent: "center" }}>
+      <Grid container spacing={4} sx={{ justifyContent: "center" }}>
         {data?.data.map((ingredient) => (
-          <Grid item key={ingredient.slug} xs={12} md={6} lg={4}>
+          <Grid item key={ingredient.slug} xs={12} md={6}>
             <IngredientCard {...ingredient} />
           </Grid>
         ))}

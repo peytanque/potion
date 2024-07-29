@@ -10,9 +10,9 @@ export const Potions: NextPage = () => {
 
   return (
     <Container>
-      <Grid container spacing={1} sx={{ justifyContent: "center" }}>
+      <Grid container spacing={4} sx={{ justifyContent: "center" }}>
       {data?.data.map((potion) => (
-          <Grid item key={potion.slug}xs={12} md={6} lg={4}>
+          <Grid item key={potion.slug}xs={12} md={6}>
             <PotionCard {...potion} />
           </Grid>
         ))}

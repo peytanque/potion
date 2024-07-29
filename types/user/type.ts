@@ -7,7 +7,6 @@ export type ItemWithQuantity = {
 };
 
 export type User = {
-  username: string;
   inventory: {
     potions: ItemWithQuantity[];
     ingredients: ItemWithQuantity[];

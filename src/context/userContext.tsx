@@ -20,65 +20,79 @@ type ActionType = "add" | "remove";
 export type ItemType = "ingredient" | "potion";
 
 type UserContextProps = {
-  user: User;
-  setUsername: Dispatch<SetStateAction<User["username"]>>;
   updateIngredientQuantity: (
     ingredientSlug: IngredientSlug,
     action: ActionType,
     specificQuantity?: number
   ) => void;
   updatePotionQuantity: (potionSlug: PotionSlug, action: ActionType) => void;
-  getUserItem: (
-    slug: IngredientSlug | PotionSlug,
-    type: ItemType
-  ) => ItemWithQuantity;
-  haveAtLeastOneIngredient: (slug: PotionSlug) => boolean
+
+  getUserIngredient: (slug: IngredientSlug) => ItemWithQuantity;
+  getUserPotion: (slug: PotionSlug) => ItemWithQuantity;
+
+  haveAtLeastOneIngredient: (slug: PotionSlug) => boolean;
+  isPotionCraftable: (slug: PotionSlug) => boolean;
+  craftPotion: (slug: PotionSlug) => void;
 };
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
 
 const UserProvider: FC<React.PropsWithChildren> = ({ children }) => {
-  const [username, setUsername] = useState(defaultUser.username);
   const [ingredients, setIngredients] = useState(
     defaultUser.inventory.ingredients
   );
   const [potions, setPotions] = useState(defaultUser.inventory.potions);
 
   const [user, setUser] = useState<User>({
-    username: username,
     inventory: {
       potions: potions,
       ingredients: ingredients,
     },
   });
 
-  const haveAtLeastOneIngredient = (slug: PotionSlug): boolean => {
-    const potion  = getUserItem(slug, 'potion')
-    const itemPotion = potion.item as PotionType
+  const isPotionCraftable = (slug: PotionSlug) => {
+    const potion = getUserPotion(slug);
+    const itemPotion = potion.item as PotionType;
+    const userIngredients = itemPotion.ingredients.map((i) =>
+      getUserIngredient(i.slug)
+    );
 
-    console.log('itemPotion ', itemPotion);
-    console.log('getIngredient ', itemPotion.ingredients.filter((ingredient) => getUserItem(ingredient.slug, 'ingredient')));
+    const ingredientList = itemPotion.ingredients;
 
-    console.log('supposé return ', itemPotion.ingredients.filter((ingredient) => getUserItem(ingredient.slug, 'ingredient').quantity > 0));
-    return false;
-    return !!(itemPotion.ingredients.filter((ingredient) => getUserItem(ingredient.slug, 'ingredient').quantity > 0))
-  }
-
-  const getUserItem = (
-    slug: IngredientSlug | PotionSlug,
-    type: ItemType
-  ): ItemWithQuantity => {
-    switch (type) {
-      case "ingredient":
-        return ingredients.find(
-          (i) => i.item.slug === slug
-        ) as ItemWithQuantity;
-      case "potion":
-        return potions.find((i) => i.item.slug === slug) as ItemWithQuantity;
-    }
+    return !!(
+      userIngredients.filter((userIngredient) =>
+        ingredientList.some(
+          (ingredient) => ingredient.requiredQuantity <= userIngredient.quantity
+        )
+      ).length === itemPotion.ingredients.length
+    );
   };
 
-  const calcQuantity = (item: ItemWithQuantity, action: ActionType, specificQuantity?: number): number => {
+  const haveAtLeastOneIngredient = (slug: PotionSlug): boolean => {
+    const potion = getUserPotion(slug);
+    const itemPotion = potion.item as PotionType;
+    const userIngredients = itemPotion.ingredients.map((i) =>
+      getUserIngredient(i.slug)
+    );
+
+    return (
+      userIngredients.filter((ingredient) => ingredient.quantity > 0).length > 0
+    );
+  };
+
+  const getUserIngredient = (slug: IngredientSlug): ItemWithQuantity => {
+    return ingredients.find((i) => i.item.slug === slug) as ItemWithQuantity;
+  };
+
+  const getUserPotion = (slug: PotionSlug): ItemWithQuantity => {
+    return potions.find((i) => i.item.slug === slug) as ItemWithQuantity;
+  };
+
+  const calcQuantity = (
+    item: ItemWithQuantity,
+    action: ActionType,
+    specificQuantity?: number
+  ): number => {
     switch (action) {
       case "add":
         return item.quantity + (specificQuantity ?? 1);
@@ -98,44 +112,70 @@ const UserProvider: FC<React.PropsWithChildren> = ({ children }) => {
     action: ActionType,
     specificQuantity?: number
   ) => {
-    const ingredient = getUserItem(slug, "ingredient");
+    const ingredient = getUserIngredient(slug);
     setIngredients([
+      ...ingredients.filter((p) => p.item.slug !== slug),
       {
         item: ingredient.item,
         quantity: calcQuantity(ingredient, action, specificQuantity),
       },
-      ...ingredients,
     ]);
   };
 
   const updatePotionQuantity = (slug: PotionSlug, action: ActionType) => {
-    const potion = getUserItem(slug, "potion");
+    const potion = getUserPotion(slug);
     setPotions([
+      ...potions.filter((p) => p.item.slug !== slug),
       {
         item: potion.item,
         quantity: calcQuantity(potion, action),
       },
-      ...potions,
     ]);
+  };
+
+  const handleChanges = (updatedElements: ItemWithQuantity[]) => {
+
+  }
+
+  const craftPotion = (slug: PotionSlug) => {
+    const potion = getUserPotion(slug);
+    const itemPotion = potion.item as PotionType;
+
+    const userIngredients = itemPotion.ingredients.map((i) =>
+      getUserIngredient(i.slug)
+    );
+
+    const ingredientsState = [...ingredients]
+    const restIngredients = ingredientsState.filter((ingredient) => !userIngredients.includes(ingredient))
+
+    const updatedIngredientsQuantity = userIngredients.filter((userIngredient) => userIngredient.quantity = userIngredient.quantity - itemPotion.ingredients.find((requis) => requis.slug === userIngredient.item.slug)!.requiredQuantity)
+
+    setPotions([...updatedIngredientsQuantity, ...restIngredients])
+    updatePotionQuantity(slug, 'add')
+    // console.log("//// potion d'appel ////", potion)
+    // console.log('//// stock utillisateur pour la potion demandé ////', userIngredients)
+
+    // console.log('//// reste du tableau ////', restIngredients)
+    // console.log('//// stock requis ////', itemPotion.ingredients)
   };
 
   useEffect(() => {
     setUser({
-      username: username ?? user.username,
       inventory: {
         ingredients: ingredients ?? user.inventory.ingredients,
         potions: potions ?? user.inventory.potions,
       },
     });
-  }, [username, ingredients, potions]);
+  }, [ingredients, potions]);
 
   const value: UserContextProps = {
-    user,
-    setUsername,
+    isPotionCraftable,
     updateIngredientQuantity,
     updatePotionQuantity,
-    getUserItem,
-    haveAtLeastOneIngredient
+    getUserIngredient,
+    getUserPotion,
+    haveAtLeastOneIngredient,
+    craftPotion,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
@@ -143,20 +183,22 @@ const UserProvider: FC<React.PropsWithChildren> = ({ children }) => {
 
 const useUserContext = () => {
   const {
-    user,
-    setUsername,
     updateIngredientQuantity,
     updatePotionQuantity,
-    getUserItem,
-    haveAtLeastOneIngredient
+    getUserIngredient,
+    getUserPotion,
+    haveAtLeastOneIngredient,
+    isPotionCraftable,
+    craftPotion,
   } = useContext(UserContext) as UserContextProps;
   return {
-    user,
-    setUsername,
     updateIngredientQuantity,
     updatePotionQuantity,
-    getUserItem,
-    haveAtLeastOneIngredient
+    getUserIngredient,
+    getUserPotion,
+    haveAtLeastOneIngredient,
+    isPotionCraftable,
+    craftPotion,
   };
 };
 

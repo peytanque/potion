@@ -1,48 +1,113 @@
-import { Paper, Typography } from "@mui/material";
-import { PotionType } from "@types";
+import {
+  Avatar,
+  Badge,
+  Button,
+  colors,
+  IconButton,
+  Paper,
+  Typography,
+} from "@mui/material";
+import { IngredientSlug, PotionType } from "@types";
 import { FC } from "react";
 import { ItemType, useUserContext } from "src/context/userContext";
 import { IngredientQuantityType } from "types/potion/type";
-import Thumb from "./Thumb";
 import { useRouter } from "next/router";
 
-type SmallCardProps = {
-  type: ItemType;
-  item: PotionType | IngredientQuantityType;
+type SmallCardIngredientProps = {
+  item: IngredientQuantityType;
 };
 
-export const SmallCard: FC<SmallCardProps> = ({ type, item }) => {
-  const isIngredient = type === "ingredient";
-  const isPotion = type === "potion";
+type SmallCardPotionProps = {
+  item: PotionType;
+};
+
+export const SmallCardIngredient: FC<SmallCardIngredientProps> = ({ item }) => {
+  const { requiredQuantity } = item;
 
   const router = useRouter();
-  const ingredientRoute = "/ingredients/"
-  const potionRoute = "/potions/"
+  const redirectionRoute = `/ingredients/${item.slug}`;
 
-  const redirectionRoute = (isIngredient ? ingredientRoute : potionRoute) + item.slug
+  const { getUserIngredient } = useUserContext();
+  const ingredient = getUserIngredient(item.slug as IngredientSlug);
 
-  const { getUserItem } = useUserContext();
+  const { quantity: userQuantity } = ingredient;
+
+  const haveEnoughIngredients = !!(userQuantity >= requiredQuantity) 
+
   return (
-    <Paper
-      sx={{
-        display: "flex",
-        alignItems: " center",
-        gap: 1,
-        width: "100%",
-      }}
-      variant="outlined"
-      onClick={() => router.push(redirectionRoute)}
-    >
-      <Thumb
-        type={type}
-        slug={item.slug}
-      />
-      <Typography variant="caption" lineHeight={1}>
-        {isIngredient && getUserItem(item.slug, "ingredient").item.name}
-        {isPotion && getUserItem(item.slug, "potion").item.name}
-      </Typography>
-    </Paper>
+    <Button sx={{ width: "100%" }}>
+      <Paper
+        sx={{
+          display: "flex",
+          alignItems: " center",
+          gap: 1,
+          width: "100%",
+          backgroundColor: haveEnoughIngredients ? colors.green[50]: 'default'
+        }}
+        variant="outlined"
+        onClick={() => router.push(redirectionRoute)}
+      >
+        <Badge
+          overlap="circular"
+          color="primary"
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          badgeContent={`${userQuantity}/${requiredQuantity}`}
+        >
+          <Avatar alt={ingredient.item.slug} src={ingredient.item.asset.src} />
+        </Badge>
+        <Typography
+          variant="caption"
+          lineHeight={1}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+            pr: 1,
+          }}
+        >
+          {getUserIngredient(item.slug).item.name}
+        </Typography>
+      </Paper>
+    </Button>
   );
 };
 
-export default SmallCard;
+export const SmallCardPotion: FC<SmallCardPotionProps> = ({ item }) => {
+  const router = useRouter();
+  const redirectionRoute = `/potions/${item.slug}`;
+
+  const { getUserPotion } = useUserContext();
+
+  return (
+    <Button sx={{ width: "100%" }}>
+      <Paper
+        sx={{
+          display: "flex",
+          alignItems: " center",
+          gap: 1,
+          width: "100%",
+        }}
+        variant="outlined"
+        onClick={() => router.push(redirectionRoute)}
+      >
+        <Avatar alt={item.name} src={item.asset.src} />
+        <Typography
+          variant="caption"
+          lineHeight={1}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+            pr: 1,
+          }}
+        >
+          {getUserPotion(item.slug).item.name}
+        </Typography>
+      </Paper>
+    </Button>
+  );
+};
+
+export default { SmallCardIngredient, SmallCardPotion };

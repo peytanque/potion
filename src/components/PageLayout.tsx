@@ -18,13 +18,15 @@ export const PageLayout: FC<PageLayoutProps> = ({ children }) => {
 
   const pathname = usePathname();
   const [currentRoute, setCurrentRoute] = useState<string>(pathname);
-
+  
   useEffect(() => {
-    routes.find((route) => route.path === pathname) &&
-      pathname !== currentRoute &&
-      router.push(currentRoute);
+    routes.find((route) => route.path === pathname) && setCurrentRoute(pathname)
   }, [pathname, currentRoute, router]);
 
+  const goTo = (newValue: string) => {
+    setCurrentRoute(newValue)
+    router.push(newValue)
+  }
 
   return (
     <Container maxWidth="lg">
@@ -40,7 +42,7 @@ export const PageLayout: FC<PageLayoutProps> = ({ children }) => {
             showLabels
             value={currentRoute}
             onChange={(event, newValue) => {
-              setCurrentRoute(newValue);
+              goTo(newValue)
             }}
           >
             {routes

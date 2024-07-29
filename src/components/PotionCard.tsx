@@ -4,10 +4,11 @@ import {
   CardContent,
   Divider,
   IconButton,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { PotionType } from "@types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useUserContext } from "@context";
 import { DynamicBackgroundCard } from "./DynamicBackgroundCard";
 import CardItemMedia from "./CardItemMedia";
@@ -15,13 +16,9 @@ import UserQuantityInfo from "./UserQuantityInfo";
 import ItemDetails from "./ItemDetails";
 
 export const PotionCard = ({ asset, name, slug, ingredients }: PotionType) => {
-  const { getUserItem, haveAtLeastOneIngredient } = useUserContext();
+  const { getUserPotion, haveAtLeastOneIngredient, isPotionCraftable, craftPotion } = useUserContext();
   const [shownState, setIsRecipeShown] = useState(haveAtLeastOneIngredient(slug));
-  const isQuantityAboveZero = !!(getUserItem(slug, "potion").quantity > 0);
-
-  // useEffect(() => {
-  //   setIsRecipeShown(isQuantityAboveZero);
-  // }, [isQuantityAboveZero]);
+  const isQuantityAboveZero = !!(getUserPotion(slug).quantity > 0);
 
   return (
     <DynamicBackgroundCard isNotEmpty={isQuantityAboveZero}>
@@ -35,7 +32,7 @@ export const PotionCard = ({ asset, name, slug, ingredients }: PotionType) => {
           </Typography>
           <UserQuantityInfo
             isNotEmpty={isQuantityAboveZero}
-            userQuantity={getUserItem(slug, "potion").quantity}
+            userQuantity={getUserPotion(slug).quantity}
           />
           <Divider sx={{ my: 1 }} />
           <ItemDetails
@@ -49,7 +46,7 @@ export const PotionCard = ({ asset, name, slug, ingredients }: PotionType) => {
           <Divider sx={{ my: 1 }} />
         </CardContent>
         <Box>
-          <Button disabled variant="contained"  sx={{width: '100%'}}>Confectionner</Button>
+            <Button disabled={!isPotionCraftable(slug)} onClick={() => craftPotion(slug)} variant="contained" sx={{width: '100%'}}>Confectionner</Button>
         </Box>
       </Box>
     </DynamicBackgroundCard>

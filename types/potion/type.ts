@@ -13,8 +13,7 @@ export type PotionSlug =
 
 export type IngredientQuantityType = {
   slug: IngredientSlug;
-  quantity: number;
-  userQuantity: number;
+  requiredQuantity: number;
 };
 
 export type PotionType = {

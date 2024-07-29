@@ -1,15 +1,13 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Box, Grid, IconButton, Paper, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import { Dispatch, FC, SetStateAction } from "react";
 import {
   IngredientQuantityType,
   PotionSlug,
   PotionType,
 } from "types/potion/type";
-import Thumb from "./Thumb";
 import { IngredientSlug } from "@types";
-import { useUserContext } from "@context";
-import SmallCard from "./SmallCard";
+import { SmallCardIngredient, SmallCardPotion } from "./SmallCard";
 
 type ItemDetailsProps = {
   title: string;
@@ -20,7 +18,6 @@ type ItemDetailsProps = {
     potions?: PotionType[];
   };
   parentSlug: IngredientSlug | PotionSlug;
-  withQuantity?: boolean;
 };
 
 export const ItemDetails: FC<ItemDetailsProps> = ({
@@ -29,7 +26,6 @@ export const ItemDetails: FC<ItemDetailsProps> = ({
   setShownState,
   items,
   parentSlug,
-  withQuantity = false,
 }) => {
   const { ingredients } = items;
 
@@ -40,7 +36,7 @@ export const ItemDetails: FC<ItemDetailsProps> = ({
     : (items.potions as PotionType[]);
 
   return (
-    <Grid container >
+    <Grid container>
       <Grid item xs={12}>
         <Typography
           variant="subtitle2"
@@ -53,6 +49,7 @@ export const ItemDetails: FC<ItemDetailsProps> = ({
         </Typography>
       </Grid>
       <Grid item xs={3}>
+        <Tooltip title={!shownState ? 'Voir les recettes' : 'Masquer les recettes'}>
         <IconButton
           aria-label="add"
           color="info"
@@ -61,16 +58,18 @@ export const ItemDetails: FC<ItemDetailsProps> = ({
         >
           {shownState ? <VisibilityOff /> : <Visibility />}
         </IconButton>
+        </Tooltip>
       </Grid>
-      <Grid item xs={9} gap={0.5}>
-        {shownState &&
-          childrens.map((item) => {
-            return (
-              <Box  key={`${parentSlug}-${item.slug}`}>
-                <SmallCard item={item} type={isIngredient ? "ingredient" : "potion"}/>
-              </Box>
-            );
-          })}
+      <Grid item xs={9}>
+          {shownState &&
+            childrens.map((item) => {
+              return (
+                <Box key={`${parentSlug}-${item.slug}`}>
+                  {isIngredient && <SmallCardIngredient item={item as IngredientQuantityType} />}
+                  {!isIngredient && <SmallCardPotion item={item as PotionType} />}
+                </Box>
+              );
+            })}
       </Grid>
     </Grid>
   );

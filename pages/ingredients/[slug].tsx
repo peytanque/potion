@@ -4,21 +4,37 @@ import { IngredientSlug } from "@types";
 import { IngredientCard, Link } from "@components";
 import { useRouter } from "next/router";
 import { useIngredient } from "@hooks";
-import { Button } from "@mui/material";
+import { Box, Button, colors } from "@mui/material";
 
 export const Ingredient: NextPage = () => {
   const { query, back } = useRouter();
+  const router = useRouter();
 
   const { data, isLoading } = useIngredient(
     query.slug as IngredientSlug,
     !!query.slug
   );
 
+
   if (isLoading) return <p>Loading...</p>;
 
   return (
     <Container>
-      <Button variant="contained" onClick={() => back()} sx={{mb: 4}}>Retour</Button>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          width: "fit-content",
+          gap: 2,
+          mb: 2,
+        }}
+      >
+        {router.back && (
+          <Button variant="text" color="primary" onClick={router.back}>
+            Retour
+          </Button>
+        )}
+      </Box>
       {data?.data && <IngredientCard {...data.data} />}
     </Container>
   );

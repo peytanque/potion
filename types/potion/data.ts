@@ -9,9 +9,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12786.png",
     },
     ingredients: [
-      { slug: "noix-de-coco", quantity: 1 },
-      { slug: "yttrium", quantity: 2 },
-      { slug: "mandragore", quantity: 3 },
+      { slug: "noix-de-coco", requiredQuantity: 1 },
+      { slug: "yttrium", requiredQuantity: 2 },
+      { slug: "mandragore", requiredQuantity: 3 },
     ],
   },
   {
@@ -22,9 +22,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12023.png",
     },
     ingredients: [
-      { slug: "bave-de-lama", quantity: 1 },
-      { slug: "plume-de-griffon", quantity: 2 },
-      { slug: "helium-liquide", quantity: 3 },
+      { slug: "bave-de-lama", requiredQuantity: 1 },
+      { slug: "plume-de-griffon", requiredQuantity: 2 },
+      { slug: "helium-liquide", requiredQuantity: 3 },
     ],
   },
   {
@@ -35,9 +35,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12041.png",
     },
     ingredients: [
-      { slug: "or", quantity: 1 },
-      { slug: "crin-de-licorne", quantity: 2 },
-      { slug: "azote-liquide", quantity: 3 },
+      { slug: "or", requiredQuantity: 1 },
+      { slug: "crin-de-licorne", requiredQuantity: 2 },
+      { slug: "azote-liquide", requiredQuantity: 3 },
     ],
   },
   {
@@ -48,9 +48,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12803.png",
     },
     ingredients: [
-      { slug: "poil-de-yeti", quantity: 1 },
-      { slug: "jus-de-horglup", quantity: 2 },
-      { slug: "argent", quantity: 3 },
+      { slug: "poil-de-yeti", requiredQuantity: 1 },
+      { slug: "jus-de-horglup", requiredQuantity: 2 },
+      { slug: "argent", requiredQuantity: 3 },
     ],
   },
   {
@@ -61,9 +61,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12083.png",
     },
     ingredients: [
-      { slug: "epine-de-herisson", quantity: 1 },
-      { slug: "jus-de-horglup", quantity: 2 },
-      { slug: "noix-de-coco", quantity: 3 },
+      { slug: "epine-de-herisson", requiredQuantity: 1 },
+      { slug: "jus-de-horglup", requiredQuantity: 2 },
+      { slug: "noix-de-coco", requiredQuantity: 3 },
     ],
   },
   {
@@ -74,9 +74,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/79181.png",
     },
     ingredients: [
-      { slug: "poil-de-yeti", quantity: 1 },
-      { slug: "or", quantity: 2 },
-      { slug: "argent", quantity: 3 },
+      { slug: "poil-de-yeti", requiredQuantity: 1 },
+      { slug: "or", requiredQuantity: 2 },
+      { slug: "argent", requiredQuantity: 3 },
     ],
   },
   {
@@ -87,9 +87,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12754.png",
     },
     ingredients: [
-      { slug: "helium-liquide", quantity: 1 },
-      { slug: "plume-de-griffon", quantity: 2 },
-      { slug: "azote-liquide", quantity: 3 },
+      { slug: "helium-liquide", requiredQuantity: 1 },
+      { slug: "plume-de-griffon", requiredQuantity: 2 },
+      { slug: "azote-liquide", requiredQuantity: 3 },
     ],
   },
   {
@@ -100,9 +100,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12722.png",
     },
     ingredients: [
-      { slug: "crin-de-licorne", quantity: 1 },
-      { slug: "mandragore", quantity: 2 },
-      { slug: "bave-de-lama", quantity: 3 },
+      { slug: "crin-de-licorne", requiredQuantity: 1 },
+      { slug: "mandragore", requiredQuantity: 2 },
+      { slug: "bave-de-lama", requiredQuantity: 3 },
     ],
   },
   {
@@ -113,9 +113,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12809.png",
     },
     ingredients: [
-      { slug: "queue-d-ecureil", quantity: 1 },
-      { slug: "yttrium", quantity: 2 },
-      { slug: "epine-de-herisson", quantity: 3 },
+      { slug: "queue-d-ecureil", requiredQuantity: 1 },
+      { slug: "yttrium", requiredQuantity: 2 },
+      { slug: "epine-de-herisson", requiredQuantity: 3 },
     ],
   },
 ];

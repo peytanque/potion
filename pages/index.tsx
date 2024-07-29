@@ -5,14 +5,13 @@ import { FormEvent, useState } from "react";
 import { useUserContext } from "src/context/userContext";
 
 export const Home: NextPage = () => {
-  const { user, setUsername } = useUserContext();
+  // const { user, setUsername } = useUserContext();
 
   const [test, setTest] = useState("");
 
   const update = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    setUsername(test)
   }
   return (
     <Container maxWidth="lg" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: "calc(100vh-4rem))" }}>
