@@ -9,9 +9,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12786.png",
     },
     ingredients: [
-      { name: "noix-de-coco", quantity: 10 },
-      { name: "yttrium", quantity: 3 },
-      { name: "mandragore", quantity: 1 },
+      { slug: "noix-de-coco", quantity: 1 },
+      { slug: "yttrium", quantity: 2 },
+      { slug: "mandragore", quantity: 3 },
     ],
   },
   {
@@ -22,9 +22,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12023.png",
     },
     ingredients: [
-      { name: "bave-de-lame", quantity: 69 },
-      { name: "plume-de-griffon", quantity: 3 },
-      { name: "helium-liquide", quantity: 1 },
+      { slug: "bave-de-lama", quantity: 1 },
+      { slug: "plume-de-griffon", quantity: 2 },
+      { slug: "helium-liquide", quantity: 3 },
     ],
   },
   {
@@ -35,9 +35,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12041.png",
     },
     ingredients: [
-      { name: "or", quantity: 10 },
-      { name: "crin-de-licorne", quantity: 3 },
-      { name: "azote-liquide", quantity: 1 },
+      { slug: "or", quantity: 1 },
+      { slug: "crin-de-licorne", quantity: 2 },
+      { slug: "azote-liquide", quantity: 3 },
     ],
   },
   {
@@ -48,9 +48,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12803.png",
     },
     ingredients: [
-      { name: "poil-de-yeti", quantity: 10 },
-      { name: "jus-de-horglup", quantity: 3 },
-      { name: "argent", quantity: 1 },
+      { slug: "poil-de-yeti", quantity: 1 },
+      { slug: "jus-de-horglup", quantity: 2 },
+      { slug: "argent", quantity: 3 },
     ],
   },
   {
@@ -61,9 +61,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12083.png",
     },
     ingredients: [
-      { name: "epine-de-herisson", quantity: 10 },
-      { name: "jus-de-horglup", quantity: 3 },
-      { name: "noix-de-coco", quantity: 1 },
+      { slug: "epine-de-herisson", quantity: 1 },
+      { slug: "jus-de-horglup", quantity: 2 },
+      { slug: "noix-de-coco", quantity: 3 },
     ],
   },
   {
@@ -74,9 +74,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/79181.png",
     },
     ingredients: [
-      { name: "poil-de-yeti", quantity: 10 },
-      { name: "or", quantity: 3 },
-      { name: "argent", quantity: 1 },
+      { slug: "poil-de-yeti", quantity: 1 },
+      { slug: "or", quantity: 2 },
+      { slug: "argent", quantity: 3 },
     ],
   },
   {
@@ -87,9 +87,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12754.png",
     },
     ingredients: [
-      { name: "helium-liquide", quantity: 10 },
-      { name: "plume-de-griffon", quantity: 3 },
-      { name: "azote-liquide", quantity: 1 },
+      { slug: "helium-liquide", quantity: 1 },
+      { slug: "plume-de-griffon", quantity: 2 },
+      { slug: "azote-liquide", quantity: 3 },
     ],
   },
   {
@@ -100,9 +100,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12722.png",
     },
     ingredients: [
-      { name: "crin-de-licorne", quantity: 10 },
-      { name: "mandragore", quantity: 3 },
-      { name: "bave-de-lame", quantity: 1 },
+      { slug: "crin-de-licorne", quantity: 1 },
+      { slug: "mandragore", quantity: 2 },
+      { slug: "bave-de-lama", quantity: 3 },
     ],
   },
   {
@@ -113,9 +113,9 @@ export const potionsData: PotionType[] = [
       src: "https://api.dofusdb.fr/img/items/250/12809.png",
     },
     ingredients: [
-      { name: "queue-d-ecureil", quantity: 10 },
-      { name: "yttrium", quantity: 3 },
-      { name: "epine-de-herisson", quantity: 1 },
+      { slug: "queue-d-ecureil", quantity: 1 },
+      { slug: "yttrium", quantity: 2 },
+      { slug: "epine-de-herisson", quantity: 3 },
     ],
   },
 ];

@@ -1,5 +1,5 @@
 import Link from "./Link";
-import { IngredientCard, SkeletonIngredientCard } from "./IngredientCard";
+import { IngredientCard } from "./IngredientCard";
 import PotionCard from "./PotionCard";
 import PageLayout from "./PageLayout";
 import Thumb from "./Thumb";
@@ -10,5 +10,4 @@ export {
   PotionCard,
   PageLayout,
   Thumb,
-  SkeletonIngredientCard,
 };

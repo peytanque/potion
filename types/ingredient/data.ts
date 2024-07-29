@@ -10,7 +10,7 @@ export const ingredientsData: IngredientType[] = [
     },
   },
   {
-    slug: "bave-de-lame",
+    slug: "bave-de-lama",
     name: "Bave de lama",
     description:
       "Il paraît que les lamas crachent sur leurs ennemis. On ne sait s'il s'agit d'une marque de domination, de mépris ou d'affection.",

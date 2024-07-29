@@ -6,6 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import theme from "../src/theme";
 import { PageLayout } from "@components";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { UserProvider } from "src/context";
 
 export const App = (props: AppProps) => {
   const queryClient = new QueryClient();
@@ -19,13 +20,13 @@ export const App = (props: AppProps) => {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        {/* <Box component="section" sx={{ height: "100vh" }}> */}
         <QueryClientProvider client={queryClient}>
+            <UserProvider>
           <PageLayout>
-            <Component {...pageProps} />
+              <Component {...pageProps} />
           </PageLayout>
+            </UserProvider>
         </QueryClientProvider>
-        {/* </Box> */}
       </ThemeProvider>
     </AppCacheProvider>
   );

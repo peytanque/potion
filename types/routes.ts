@@ -1,22 +1,12 @@
-// todo icons
-
-import {
-  Blender,
-  Cookie,
-  Home,
-  Inventory2,
-  SvgIconComponent,
-} from "@mui/icons-material";
-
 export type Route = {
   path: string;
   label?: string;
-  icon?: SvgIconComponent
+  needUser: boolean
 };
 
 export const routes: Route[] = [
-  { path: "/", label: "Acceuil", icon: Home },
-  { path: "/ingredients", label: "Ingrédients", icon: Cookie },
-  { path: "/potions", label: "Recettes", icon: Blender },
-  { path: "/inventory", label: "Inventaire", icon: Inventory2 },
+  { path: "/", label: "Acceuil", needUser: false },
+  { path: "/ingredients", label: "Ingrédients", needUser: true },
+  { path: "/potions", label: "Potions", needUser: true },
+  // { path: "/inventory", label: "Inventaire", needUser: true },
 ];

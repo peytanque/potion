@@ -11,10 +11,10 @@ export type PotionSlug =
   | "potion-guerison"
   | "potion-transformation";
 
-type IngredientQuantityType = {
-  name: IngredientSlug;
+export type IngredientQuantityType = {
+  slug: IngredientSlug;
   quantity: number;
-  userQuantity?: number;
+  userQuantity: number;
 };
 
 export type PotionType = {

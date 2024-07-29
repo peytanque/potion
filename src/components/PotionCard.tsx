@@ -1,61 +1,58 @@
 import {
-  Card,
+  Box,
+  Button,
   CardContent,
-  CardMedia,
   Divider,
-  Grid,
+  IconButton,
   Typography,
 } from "@mui/material";
 import { PotionType } from "@types";
-import Thumb from "./Thumb";
+import { useEffect, useState } from "react";
+import { useUserContext } from "@context";
+import { DynamicBackgroundCard } from "./DynamicBackgroundCard";
+import CardItemMedia from "./CardItemMedia";
+import UserQuantityInfo from "./UserQuantityInfo";
+import ItemDetails from "./ItemDetails";
 
-export const PotionCard = ({
-  asset,
-  description,
-  name,
-  slug,
-  ingredients,
-}: PotionType) => {
+export const PotionCard = ({ asset, name, slug, ingredients }: PotionType) => {
+  const { getUserItem, haveAtLeastOneIngredient } = useUserContext();
+  const [shownState, setIsRecipeShown] = useState(haveAtLeastOneIngredient(slug));
+  const isQuantityAboveZero = !!(getUserItem(slug, "potion").quantity > 0);
+
+  // useEffect(() => {
+  //   setIsRecipeShown(isQuantityAboveZero);
+  // }, [isQuantityAboveZero]);
+
   return (
-    <Card
-      sx={{
-        display: "flex",
-        padding: 0.5,
-        height: '100%'
-      }}
-      variant="outlined"
-    >
-      <CardMedia
-        image={asset.src}
-        title={slug}
-        component="img"
-        sx={{
-          height: "100%",
-          objectFit: "contain",
-          alignSelf: "center",
-          width: "25%",
-        }}
-      />
-      <CardContent sx={{ width: "75%", paddingBottom: 0 }}>
-        <Typography variant="h6" component="div">
-          {name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {description}
-        </Typography>
-        <Divider sx={{ my: 1 }} />
-        <Grid container gap={{ xs: 4, md: 2 }}>
-          {ingredients.map((ingredient) => (
-            <Thumb
-              key={`${name}-${ingredient.name}`}
-              type="ingredient"
-              slug={ingredient.name}
-              quantity={ingredient.quantity}
-            />
-          ))}
-        </Grid>
-      </CardContent>
-    </Card>
+    <DynamicBackgroundCard isNotEmpty={isQuantityAboveZero}>
+      <CardItemMedia src={asset.src} alt={slug} />
+      <Box 
+        sx={{ display: "flex", flexDirection: "column", ml: 1, width: "100%" }}
+      >
+        <CardContent sx={{ flex: "1 0 auto", p: 0 }}>
+          <Typography component="div" variant="h5" sx={{ mb: 1 }}>
+            {name}
+          </Typography>
+          <UserQuantityInfo
+            isNotEmpty={isQuantityAboveZero}
+            userQuantity={getUserItem(slug, "potion").quantity}
+          />
+          <Divider sx={{ my: 1 }} />
+          <ItemDetails
+            items={{ingredients}}
+            parentSlug={slug}
+            shownState={shownState}
+            setShownState={setIsRecipeShown}
+            title="Ingrédients requis"
+          />
+         
+          <Divider sx={{ my: 1 }} />
+        </CardContent>
+        <Box>
+          <Button disabled variant="contained"  sx={{width: '100%'}}>Confectionner</Button>
+        </Box>
+      </Box>
+    </DynamicBackgroundCard>
   );
 };
 

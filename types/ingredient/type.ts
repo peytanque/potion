@@ -1,6 +1,6 @@
 export type IngredientSlug =
   | "argent"
-  | "bave-de-lame"
+  | "bave-de-lama"
   | "epine-de-herisson"
   | "plume-de-griffon"
   | "helium-liquide"

@@ -28,9 +28,7 @@ const getInRecipeFn = async (
   const potionsResponse = await fetch(endpoints.potions);
   const potionsData: PotionsApiResponse = await potionsResponse.json();
 
-  const data = potionsData.data.filter(potion => potion.ingredients.some(ingredient => ingredient.name === slug));
-
-  console.log('data', data)
+  const data = potionsData.data.filter(potion => potion.ingredients.some(ingredient => ingredient.slug === slug));
 
   return data;
 };
@@ -39,7 +37,6 @@ const useInRecipe = (slug: IngredientSlug) => {
   return useQuery({
     queryKey: ["inRecipe", slug],
     queryFn: () => getInRecipeFn(slug),
-    
   });
 };
 

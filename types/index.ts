@@ -3,7 +3,7 @@ import {
   IngredientType,
   IngredientsApiResponse,
   ingredientsData,
-  IngredientSlug
+  IngredientSlug,
 } from "./ingredient";
 
 import {
@@ -11,14 +11,16 @@ import {
   PotionType,
   PotionsApiResponse,
   potionsData,
-  PotionSlug
+  PotionSlug,
 } from "./potion";
+
+import { ItemWithQuantity, User, defaultUser } from "./user";
 
 import { routes, Route } from "./routes";
 
 import { endpoints } from "./endpoints";
 
-export { ingredientsData, potionsData, routes, endpoints };
+export { ingredientsData, potionsData, routes, endpoints, defaultUser };
 export type {
   IngredientApiResponse,
   IngredientType,
@@ -28,5 +30,7 @@ export type {
   PotionsApiResponse,
   Route,
   PotionSlug,
-  IngredientSlug
+  IngredientSlug,
+  ItemWithQuantity,
+  User,
 };

@@ -1,36 +1,25 @@
 import Container from "@mui/material/Container";
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
-import { PotionsApiResponse, endpoints } from "@types";
-import { PotionCard } from "@components";
-import { Grid } from "@mui/material";
+import { PotionSlug } from "@types";
+import { Link, PotionCard } from "@components";
+import { useRouter } from "next/router";
+import { usePotion } from "@hooks";
 
-export const Potions: NextPage = () => {
-  const [data, setData] = useState<PotionsApiResponse | null>(null);
-  const [isLoading, setLoading] = useState(true);
+export const Potion: NextPage = () => {
+  const router = useRouter();
 
-  useEffect(() => {
-    fetch(endpoints.potions)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      });
-  }, []);
+  const { data, isLoading } = usePotion(
+    router.query.slug as PotionSlug, !!router.query.slug
+  );
 
   if (isLoading) return <p>Loading...</p>;
 
   return (
     <Container>
-      <Grid container spacing={1} gap={1} sx={{ justifyContent: "center" }}>
-        {data?.data.map((potion) => (
-          <Grid item key={potion.slug} xs={12} md={5} lg={3}>
-            <PotionCard {...potion} />
-          </Grid>
-        ))}
-      </Grid>
+      <Link href={'/potions'}>Retour</Link>
+      {data?.data && <PotionCard {...data.data} />}
     </Container>
   );
 };
 
-export default Potions;
+export default Potion;
