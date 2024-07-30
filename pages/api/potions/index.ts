@@ -1,5 +1,6 @@
-import { PotionsApiResponse, potionsData } from "@types";
 import type { NextApiRequest, NextApiResponse } from "next";
+
+import { PotionsApiResponse, potionsData } from "@types";
 
 export default function handler(
   req: NextApiRequest,

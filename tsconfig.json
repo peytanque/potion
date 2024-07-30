@@ -20,6 +20,7 @@
       "@components": ["src/components"],
       "@types": ["types"],
       "@hooks": ["src/hooks"],
+      "@context": ["src/context"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

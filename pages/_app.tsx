@@ -3,9 +3,11 @@ import { AppProps } from "next/app";
 import { AppCacheProvider } from "@mui/material-nextjs/v14-pagesRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import theme from "../src/theme";
-import { PageLayout } from "@components";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import theme from "../src/theme";
+
+import { PageLayout } from "@components";
+import { UserProvider } from "@context";
 
 export const App = (props: AppProps) => {
   const queryClient = new QueryClient();
@@ -17,15 +19,14 @@ export const App = (props: AppProps) => {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        {/* <Box component="section" sx={{ height: "100vh" }}> */}
         <QueryClientProvider client={queryClient}>
+            <UserProvider>
           <PageLayout>
-            <Component {...pageProps} />
+              <Component {...pageProps} />
           </PageLayout>
+            </UserProvider>
         </QueryClientProvider>
-        {/* </Box> */}
       </ThemeProvider>
     </AppCacheProvider>
   );

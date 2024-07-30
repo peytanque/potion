@@ -15,19 +15,20 @@ npm i
 npm run dev
 ```
 
-http://localhost:3000
+Accédez au site depuis http://localhost:3000
 
 ## Stack
 
-NextJS Using Page Routing
+- [NextJS Using Page Routing](https://nextjs.org/docs)
+- [Typescript](https://www.typescriptlang.org/)
+- [Material UI](https://mui.com/material-ui/getting-started/)
+- [TanStack Query](https://tanstack.com/query/v4/docs/framework/react/reference/useQuery)
 
-Typescript
-
-API routes :
-- http://localhost:3000/api/ingredients
-- http://localhost:3000/api/ingredients/[slug] (ex: http://localhost:3000/api/ingredients/argent)
-- http://localhost:3000/api/potions
-- http://localhost:3000/api/potions/[slug] (ex: http://localhost:3000/api/potions/potion-invisibilite)
+## Routes API à votre disposition :
+- [Liste des ingrédients](http://localhost:3000/api/ingredients)
+- [Accès à un ingrédient spécifique (ici l'argent)](http://localhost:3000/api/ingredients/argent)
+- [Liste des ingrédients](http://localhost:3000/api/potions)
+- [Accès à un ingrédient spécifique (ici la potion d'invisibilité)](http://localhost:3000/api/potions/potion-invisibilite)
 
 
 ## Boilerplate

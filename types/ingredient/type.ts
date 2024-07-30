@@ -1,6 +1,6 @@
 export type IngredientSlug =
   | "argent"
-  | "bave-de-lame"
+  | "bave-de-lama"
   | "epine-de-herisson"
   | "plume-de-griffon"
   | "helium-liquide"
@@ -17,7 +17,6 @@ export type IngredientSlug =
 export type IngredientType = {
   slug: IngredientSlug;
   name: string;
-  description: string;
   asset: {
     src: string;
   };
