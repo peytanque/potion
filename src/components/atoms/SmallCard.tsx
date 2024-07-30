@@ -1,17 +1,16 @@
+import { FC } from "react";
+import { useRouter } from "next/router";
 import {
   Avatar,
   Badge,
   Button,
   colors,
-  IconButton,
   Paper,
   Typography,
 } from "@mui/material";
-import { IngredientSlug, PotionType } from "@types";
-import { FC } from "react";
-import { ItemType, useUserContext } from "src/context/userContext";
-import { IngredientQuantityType } from "types/potion/type";
-import { useRouter } from "next/router";
+
+import { IngredientSlug, PotionType, IngredientQuantityType, PotionSlug } from "@types";
+import { useUserContext } from "@context";
 
 type SmallCardIngredientProps = {
   item: IngredientQuantityType;
@@ -32,7 +31,7 @@ export const SmallCardIngredient: FC<SmallCardIngredientProps> = ({ item }) => {
 
   const { quantity: userQuantity } = ingredient;
 
-  const haveEnoughIngredients = !!(userQuantity >= requiredQuantity) 
+  const haveEnoughIngredients = !!(userQuantity >= requiredQuantity);
 
   return (
     <Button sx={{ width: "100%" }}>
@@ -42,7 +41,7 @@ export const SmallCardIngredient: FC<SmallCardIngredientProps> = ({ item }) => {
           alignItems: " center",
           gap: 1,
           width: "100%",
-          backgroundColor: haveEnoughIngredients ? colors.green[50]: 'default'
+          backgroundColor: haveEnoughIngredients ? colors.green[50] : "default",
         }}
         variant="outlined"
         onClick={() => router.push(redirectionRoute)}
@@ -78,6 +77,7 @@ export const SmallCardPotion: FC<SmallCardPotionProps> = ({ item }) => {
   const redirectionRoute = `/potions/${item.slug}`;
 
   const { getUserPotion } = useUserContext();
+  const potion = getUserPotion(item.slug as PotionSlug);
 
   return (
     <Button sx={{ width: "100%" }}>
@@ -103,7 +103,7 @@ export const SmallCardPotion: FC<SmallCardPotionProps> = ({ item }) => {
             pr: 1,
           }}
         >
-          {getUserPotion(item.slug).item.name}
+          {potion.item.name}
         </Typography>
       </Paper>
     </Button>

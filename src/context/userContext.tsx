@@ -1,4 +1,12 @@
 import {
+  createContext,
+  FC,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+
+import {
   defaultUser,
   IngredientSlug,
   ItemWithQuantity,
@@ -6,18 +14,8 @@ import {
   PotionType,
   User,
 } from "@types";
-import {
-  createContext,
-  Dispatch,
-  FC,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
 
 type ActionType = "add" | "remove";
-export type ItemType = "ingredient" | "potion";
 
 type UserContextProps = {
   updateIngredientQuantity: (
@@ -25,7 +23,6 @@ type UserContextProps = {
     action: ActionType,
     specificQuantity?: number
   ) => void;
-  updatePotionQuantity: (potionSlug: PotionSlug, action: ActionType) => void;
 
   getUserIngredient: (slug: IngredientSlug) => ItemWithQuantity;
   getUserPotion: (slug: PotionSlug) => ItemWithQuantity;
@@ -33,6 +30,7 @@ type UserContextProps = {
   haveAtLeastOneIngredient: (slug: PotionSlug) => boolean;
   isPotionCraftable: (slug: PotionSlug) => boolean;
   craftPotion: (slug: PotionSlug) => void;
+  updatePotionQuantity: (potionSlug: PotionSlug, action: ActionType) => void;
 };
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
@@ -97,10 +95,10 @@ const UserProvider: FC<React.PropsWithChildren> = ({ children }) => {
       case "add":
         return item.quantity + (specificQuantity ?? 1);
       case "remove":
-        if (item.quantity > 0) {
-          return item.quantity - (specificQuantity ?? 1);
+        if (item.quantity - (specificQuantity ?? 1) <= 0) {
+          return 0
         } else {
-          return item.quantity;
+          return item.quantity - (specificQuantity ?? 1)
         }
       default:
         return item.quantity;
@@ -133,10 +131,6 @@ const UserProvider: FC<React.PropsWithChildren> = ({ children }) => {
     ]);
   };
 
-  const handleChanges = (updatedElements: ItemWithQuantity[]) => {
-
-  }
-
   const craftPotion = (slug: PotionSlug) => {
     const potion = getUserPotion(slug);
     const itemPotion = potion.item as PotionType;
@@ -152,11 +146,6 @@ const UserProvider: FC<React.PropsWithChildren> = ({ children }) => {
 
     setPotions([...updatedIngredientsQuantity, ...restIngredients])
     updatePotionQuantity(slug, 'add')
-    // console.log("//// potion d'appel ////", potion)
-    // console.log('//// stock utillisateur pour la potion demandé ////', userIngredients)
-
-    // console.log('//// reste du tableau ////', restIngredients)
-    // console.log('//// stock requis ////', itemPotion.ingredients)
   };
 
   useEffect(() => {

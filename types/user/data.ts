@@ -15,7 +15,6 @@ const getDefaultPotionsQuantity = (): ItemWithQuantity[] => {
 };
 
 export const defaultUser: User = {
-  username: "",
   inventory: {
     ingredients: getDefaultIngredientsQuantity(),
     potions: getDefaultPotionsQuantity(),

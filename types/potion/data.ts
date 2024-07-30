@@ -4,7 +4,6 @@ export const potionsData: PotionType[] = [
   {
     slug: "potion-invisibilite",
     name: "Potion d'invisibillité",
-    description: "",
     asset: {
       src: "https://api.dofusdb.fr/img/items/250/12786.png",
     },
@@ -17,7 +16,6 @@ export const potionsData: PotionType[] = [
   {
     slug: "potion-amour",
     name: "Potion d'amour",
-    description: "",
     asset: {
       src: "https://api.dofusdb.fr/img/items/250/12023.png",
     },
@@ -30,7 +28,6 @@ export const potionsData: PotionType[] = [
   {
     slug: "potion-jeunesse",
     name: "Potion de jeunesse",
-    description: "",
     asset: {
       src: "https://api.dofusdb.fr/img/items/250/12041.png",
     },
@@ -43,7 +40,6 @@ export const potionsData: PotionType[] = [
   {
     slug: "potion-immortalite",
     name: "Potion d'immortalité",
-    description: "",
     asset: {
       src: "https://api.dofusdb.fr/img/items/250/12803.png",
     },
@@ -56,7 +52,6 @@ export const potionsData: PotionType[] = [
   {
     slug: "potion-clairvoyance",
     name: "Potion de clairvoyance",
-    description: "",
     asset: {
       src: "https://api.dofusdb.fr/img/items/250/12083.png",
     },
@@ -69,7 +64,6 @@ export const potionsData: PotionType[] = [
   {
     slug: "potion-force",
     name: "Potion de force",
-    description: "",
     asset: {
       src: "https://api.dofusdb.fr/img/items/250/79181.png",
     },
@@ -82,7 +76,6 @@ export const potionsData: PotionType[] = [
   {
     slug: "potion-vitesse",
     name: "Potion de vitesse",
-    description: "",
     asset: {
       src: "https://api.dofusdb.fr/img/items/250/12754.png",
     },
@@ -95,7 +88,6 @@ export const potionsData: PotionType[] = [
   {
     slug: "potion-guerison",
     name: "Potion de guérison",
-    description: "",
     asset: {
       src: "https://api.dofusdb.fr/img/items/250/12722.png",
     },
@@ -108,7 +100,6 @@ export const potionsData: PotionType[] = [
   {
     slug: "potion-transformation",
     name: "Potion de transformation",
-    description: "",
     asset: {
       src: "https://api.dofusdb.fr/img/items/250/12809.png",
     },

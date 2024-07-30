@@ -1,5 +1,6 @@
-import { IngredientApiResponse, ingredientsData } from "@types";
 import type { NextApiRequest, NextApiResponse } from "next";
+
+import { IngredientApiResponse, ingredientsData } from "@types";
 
 export default function handler(
   req: NextApiRequest,

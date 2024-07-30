@@ -51,7 +51,7 @@ const useIngredient = (slug: IngredientSlug, enabled: boolean = true) => {
   return useQuery({
     queryKey: ["potion", slug],
     queryFn: () => getIngredientFn(slug),
-    enabled: enabled
+    enabled: enabled,
   });
 };
 

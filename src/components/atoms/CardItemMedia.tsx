@@ -1,12 +1,12 @@
-import { CardMedia } from "@mui/material";
 import { FC } from "react";
+import { CardMedia } from "@mui/material";
 
 type CardItemMediaProps = {
   src: string;
   alt?: string;
 };
 
-const CardItemMedia: FC<CardItemMediaProps> = ({ src, alt }) => {
+export const CardItemMedia: FC<CardItemMediaProps> = ({ src, alt }) => {
   return (
     <CardMedia
       component="img"

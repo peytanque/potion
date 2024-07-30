@@ -19,7 +19,6 @@ export type IngredientQuantityType = {
 export type PotionType = {
   slug: PotionSlug;
   name: string;
-  description: string;
   asset: {
     src: string;
   };

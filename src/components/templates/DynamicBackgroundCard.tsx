@@ -1,5 +1,5 @@
-import { Card, colors } from "@mui/material"
 import { FC } from "react"
+import { Card, colors } from "@mui/material"
 
 type DynamicBackgroundCard = {
   children: React.ReactNode,

@@ -1,3 +1,5 @@
+import { FC, useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import {
   BottomNavigation,
   BottomNavigationAction,
@@ -5,9 +7,8 @@ import {
   Container,
   Paper,
 } from "@mui/material";
-import { FC, useEffect, useState } from "react";
+
 import { routes } from "@types";
-import { usePathname, useRouter } from "next/navigation";
 
 type PageLayoutProps = {
   children: React.ReactNode;

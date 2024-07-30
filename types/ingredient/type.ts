@@ -17,7 +17,6 @@ export type IngredientSlug =
 export type IngredientType = {
   slug: IngredientSlug;
   name: string;
-  description: string;
   asset: {
     src: string;
   };

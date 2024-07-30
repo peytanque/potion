@@ -1,13 +1,14 @@
-import Container from "@mui/material/Container";
 import { NextPage } from "next";
-import { IngredientSlug } from "@types";
-import { IngredientCard, Link } from "@components";
 import { useRouter } from "next/router";
+import { Box, Button } from "@mui/material";
+import Container from "@mui/material/Container";
+
+import { IngredientSlug } from "@types";
 import { useIngredient } from "@hooks";
-import { Box, Button, colors } from "@mui/material";
+import { IngredientCard } from "@components";
 
 export const Ingredient: NextPage = () => {
-  const { query, back } = useRouter();
+  const { query } = useRouter();
   const router = useRouter();
 
   const { data, isLoading } = useIngredient(
@@ -15,8 +16,7 @@ export const Ingredient: NextPage = () => {
     !!query.slug
   );
 
-
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p>Chargement de l'ingrédient...</p>;
 
   return (
     <Container>

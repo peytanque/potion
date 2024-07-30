@@ -1,13 +1,14 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Box, Grid, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import { Dispatch, FC, SetStateAction } from "react";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Box, Grid, IconButton, Tooltip, Typography } from "@mui/material";
+
 import {
+  IngredientSlug,
   IngredientQuantityType,
   PotionSlug,
   PotionType,
-} from "types/potion/type";
-import { IngredientSlug } from "@types";
-import { SmallCardIngredient, SmallCardPotion } from "./SmallCard";
+} from "@types";
+import { SmallCardIngredient, SmallCardPotion } from "@components";
 
 type ItemDetailsProps = {
   title: string;
@@ -49,27 +50,31 @@ export const ItemDetails: FC<ItemDetailsProps> = ({
         </Typography>
       </Grid>
       <Grid item xs={3}>
-        <Tooltip title={!shownState ? 'Voir les recettes' : 'Masquer les recettes'}>
-        <IconButton
-          aria-label="add"
-          color="info"
-          size="medium"
-          onClick={() => setShownState(!shownState)}
+        <Tooltip
+          title={!shownState ? "Voir les recettes" : "Masquer les recettes"}
         >
-          {shownState ? <VisibilityOff /> : <Visibility />}
-        </IconButton>
+          <IconButton
+            aria-label="add"
+            color="info"
+            size="medium"
+            onClick={() => setShownState(!shownState)}
+          >
+            {shownState ? <VisibilityOff /> : <Visibility />}
+          </IconButton>
         </Tooltip>
       </Grid>
       <Grid item xs={9}>
-          {shownState &&
-            childrens.map((item) => {
-              return (
-                <Box key={`${parentSlug}-${item.slug}`}>
-                  {isIngredient && <SmallCardIngredient item={item as IngredientQuantityType} />}
-                  {!isIngredient && <SmallCardPotion item={item as PotionType} />}
-                </Box>
-              );
-            })}
+        {shownState &&
+          childrens.map((item) => {
+            return (
+              <Box key={`${parentSlug}-${item.slug}`}>
+                {isIngredient && (
+                  <SmallCardIngredient item={item as IngredientQuantityType} />
+                )}
+                {!isIngredient && <SmallCardPotion item={item as PotionType} />}
+              </Box>
+            );
+          })}
       </Grid>
     </Grid>
   );

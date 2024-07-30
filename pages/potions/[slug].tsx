@@ -1,10 +1,11 @@
-import Container from "@mui/material/Container";
 import { NextPage } from "next";
-import { PotionSlug } from "@types";
-import { Link, PotionCard } from "@components";
 import { useRouter } from "next/router";
-import { usePotion } from "@hooks";
+import Container from "@mui/material/Container";
 import { Box, Button } from "@mui/material";
+
+import { PotionSlug } from "@types";
+import { PotionCard } from "@components";
+import { usePotion } from "@hooks";
 
 export const Potion: NextPage = () => {
   const router = useRouter();
@@ -14,7 +15,7 @@ export const Potion: NextPage = () => {
     !!router.query.slug
   );
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p>Chargement de la potion</p>;
 
   return (
     <Container>

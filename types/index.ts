@@ -12,15 +12,15 @@ import {
   PotionsApiResponse,
   potionsData,
   PotionSlug,
+  IngredientQuantityType
 } from "./potion";
 
 import { ItemWithQuantity, User, defaultUser } from "./user";
-
 import { routes, Route } from "./routes";
-
 import { endpoints } from "./endpoints";
 
 export { ingredientsData, potionsData, routes, endpoints, defaultUser };
+
 export type {
   IngredientApiResponse,
   IngredientType,
@@ -33,4 +33,5 @@ export type {
   IngredientSlug,
   ItemWithQuantity,
   User,
+  IngredientQuantityType
 };
