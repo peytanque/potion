@@ -1,4 +1,4 @@
-# Test technique Servier
+# Test technique
 
 ## Comment l'installer
 
